@@ -81,7 +81,7 @@ export default
 
 		# If any of the Observer options change, re-init.
 		inViewportRootMargin: -> @reInitInViewportMixin()
-		inViewportRoot: -> () ->
+		inViewportRoot: () ->
 			if @inViewportRequiresRoot and not @inViewportRoot
 			then @removeInViewportHandlers()
 			else @reInitInViewportMixin()
