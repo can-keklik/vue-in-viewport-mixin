@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "cypress run",
-    "build": "coffee -ct index.coffee",
+    "build": "coffee -ct index.coffee && bili",
     "version": "npm run build && git add -A",
     "postversion": "git push --follow-tags && yarn storybook:deploy",
     "storybook": "start-storybook -p 6006",
     "storybook:build": "build-storybook",
-    "storybook:deploy": "storybook-to-ghpages"
+    "storybook:deploy": "storybook-to-ghpages",
+    "bundle": "bili"
   },
   "repository": {
     "type": "git",
@@ -40,7 +41,10 @@
     "intersection-observer": "^0.5.1",
     "vue": "^2.6.10",
     "vue-loader": "^15.7.0",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.10",
+    "bili": "^4.8.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-vue": "^5.1.9"
   },
   "dependencies": {}
 }
