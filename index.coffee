@@ -32,6 +32,10 @@ export default
 			type: Number|Array
 			default: -> [0, 1] # Fire on enter/leave and fully enter/leave
 
+		inViewportRequiresRoot:
+			type: Boolean
+			default: false
+
 	# Bindings that are used by the host component
 	data: -> inViewport:
 
@@ -77,7 +81,11 @@ export default
 
 		# If any of the Observer options change, re-init.
 		inViewportRootMargin: -> @reInitInViewportMixin()
-		inViewportRoot: -> @reInitInViewportMixin()
+		inViewportRoot: -> () ->
+			if @inViewportRequiresRoot and not @inViewportRoot
+			then @removeInViewportHandlers()
+			else @reInitInViewportMixin()
+
 		inViewportThresholdWithMax: (now, old) ->
 
 			# In IE, this kept getting retriggered, so doing a manual comparison
@@ -97,6 +105,8 @@ export default
 
 		# Add listeners
 		addInViewportHandlers: ->
+			
+			return if @inViewportRequiresRoot and not @inViewportRoot
 
 			# Don't add twice
 			return if @inViewport.listening
