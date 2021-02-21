@@ -192,13 +192,11 @@
 	      return this.reInitInViewportMixin();
 	    },
 	    inViewportRoot: function inViewportRoot() {
-	      return function () {
-	        if (this.inViewportRequiresRoot && !this.inViewportRoot) {
-	          return this.removeInViewportHandlers();
-	        } else {
-	          return this.reInitInViewportMixin();
-	        }
-	      };
+	      if (this.inViewportRequiresRoot && !this.inViewportRoot) {
+	        return this.removeInViewportHandlers();
+	      } else {
+	        return this.reInitInViewportMixin();
+	      }
 	    },
 	    inViewportThresholdWithMax: function inViewportThresholdWithMax(now, old) {
 	      if (now.toString() !== old.toString()) {
